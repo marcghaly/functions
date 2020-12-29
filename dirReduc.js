@@ -1,15 +1,12 @@
 function dirReduc(arr){
-    const result = []
-    for(let i = 0; i < arr.length; i++) {
-      let condition_one = (arr[i] === "NORTH" && arr[i + 1] === "SOUTH" || arr[i] === "SOUTH" && arr[i + 1] === "NORTH" || arr[i] === "EAST" && arr[i + 1] === "WEST" || arr[i] === "WEST" && arr[i + 1] === "EAST");
-      let condition_two = (result[result.length - 1] === "NORTH" && arr[i] === "SOUTH" || result[result.length - 1] === "SOUTH" && arr[i] === "NORTH" || result[result.length - 1] === "EAST" && arr[i] === "WEST" || result[result.length - 1] === "WEST" && arr[i] === "EAST");
-      
-      condition_one ? i++ : (condition_two ? result.pop() : result.push(arr[i]));
+  let len = arr.length;
+  let stack = [];
+
+  for (let i = 0; i < len; i++){
+    if (!(arr[i] == "NORTH" && arr[i+1] == "SOUTH") || (arr[i] == "SOUTH" && arr[i+1] == "NORTH") || (arr[i] == "WEST" && arr[i+1] == "EAST") || (arr[i] == "EAST" && arr[i+1] == "WEST"))
+      stack[i] = arr.shift();
   }
-  return result;
+  console.log(arr);
 }
 
-data = ["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]; // ["WEST"]
-
-//test
-console.log(dirReduc(data));
+console.log(dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"])); // WEST
